@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>متجر دهب للملابس الفاخرة</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f4f4f9;
+            color: #333;
+        }
+
+        /* 1. الشريط العلوي */
+        header {
+            background-color: #ff6600;
+            padding: 10px 15px;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .top-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+        }
+
+        .search-box {
+            flex-grow: 1;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 8px 15px;
+            border-radius: 20px;
+            border: none;
+            outline: none;
+            font-size: 14px;
+        }
+
+        .icons {
+            display: flex;
+            gap: 12px;
+            color: white;
+            font-weight: bold;
+            font-size: 14px;
+        }
+
+        .icon-item {
+            position: relative;
+            cursor: pointer;
+        }
+
+        .badge {
+            background-color: #008000;
+            color: white;
+            border-radius: 50%;
+            padding: 2px 6px;
+            font-size: 10px;
+            position: absolute;
+            top: -5px;
+            right: -8px;
+        }
+
+        /* شريط الأقسام العلوي */
+        .categories-bar {
+            display: flex;
+            gap: 10px;
+            overflow-x: auto;
+            padding: 8px 0;
+            margin-top: 5px;
+            white-space: nowrap;
+        }
+
+        .categories-bar a {
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 4px 10px;
+            border-radius: 12px;
+        }
+
+        /* 2. اللوجو المعدل ليملأ المكان بشكل أجمل */
+        .logo-container {
+            text-align: center;
+            padding: 10px 0;
+            background: #fffdf7; /* لون خفيف يتناسب مع خلفية اللوجو الذهبي */
+        }
+
+        .logo-container img {
+            max-width: 90%;
+            height: auto;
+            display: block;
+            margin: 0 auto;
+        }
+
+        /* أزرار الخدمات السريعة */
+        .quick-nav {
+            display: flex;
+            justify-content: space-around;
+            padding: 10px;
+            background: white;
+            border-bottom: 1px solid #eee;
+        }
+
+        .quick-btn {
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            padding: 8px 12px;
+            border-radius: 20px;
+            font-size: 12px;
+            cursor: pointer;
+        }
+
+        /* 3. التنبيهات */
+        .alert-box {
+            background-color: #fff3cd;
+            border: 1px solid #ffebaa;
+            color: #856404;
+            padding: 12px;
+            margin: 10px 15px;
+            border-radius: 8px;
+            font-size: 13px;
+            line-height: 1.6;
+            text-align: center;
+        }
+
+        /* 4. شبكة المنتجات */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+            padding: 15px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 10px;
+            padding: 10px;
+            text-align: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border: 1px solid #eee;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card img {
+            width: 100%;
+            height: 140px;
+            object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 8px;
+        }
+
+        .card h4 {
+            font-size: 14px;
+            color: #333;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .card .price {
+            font-size: 13px;
+            color: #e65c00;
+            font-weight: bold;
+            margin-bottom: 3px;
+        }
+
+        .card .colors {
+            font-size: 11px;
+            color: #666;
+            margin-bottom: 8px;
+        }
+
+        .buy-btn {
+            background-color: #25d366;
+            color: white;
+            text-decoration: none;
+            padding: 6px 10px;
+            border-radius: 15px;
+            font-size: 11px;
+            font-weight: bold;
+            display: inline-block;
+        }
+
+        /* زر الواتساب الثابت */
+        .whatsapp-btn {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            background-color: #25d366;
+            color: white;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 26px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+            text-decoration: none;
+            z-index: 1000;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- الشريط العلوي -->
+    <header>
+        <div class="top-bar">
+            <div class="icons">
+                <div class="icon-item">🛒 <span class="badge">0</span></div>
+                <div class="icon-item">❤️ <span class="badge">0</span></div>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="ابحثي عن بجامات، كنزات...">
+            </div>
+            <div style="color: white; font-size: 20px;">☰</div>
+        </div>
+        <div class="categories-bar">
+            <a href="#">الكل</a>
+            <a href="#">بجامات صيفية</a>
+            <a href="#">بجامات شتوية</a>
+            <a href="#">كنزات طلعة</a>
+            <a href="#">بنطال وسترات</a>
+        </div>
+    </header>
+
+    <!-- اللوجو -->
+    <div class="logo-container">
+        <img src="https://pdftourl.net/images/1790684736267-8add681b-5485-4bd0-a0ad-3c8332843b3a.jpg" alt="متجر دهب للملابس الفاخرة">
+    </div>
+
+    <!-- أزرار التنقل السريع -->
+    <div class="quick-nav">
+        <button class="quick-btn">📋 طلباتي السابقة</button>
+        <button class="quick-btn">👤 دخول تجار الجملة</button>
+        <button class="quick-btn">🚚 مناطق التوصيل</button>
+    </div>
+
+    <!-- التنبيهات -->
+    <div class="alert-box">
+        أهلاً بكم في متجر دهب للملابس الفاخرة! تسوقوا أحدث موديلات البجامات وكنزات الطلعة أونلاين.
+    </div>
+
+    <!-- شبكة المنتجات -->
+    <div class="grid-container">
+
+        <!-- منتج 1 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/150" alt="بيجامة صيفية">
+            <h4>بيجامة صيفية قطن</h4>
+            <p class="price">120,000 ل.س</p>
+            <p class="colors">الألوان: زهر / أزرق / أبيض</p>
+            <a href="https://wa.me/963957494800?text=أريد%20طلب%20بيجامة%20صيفية%20قطن" class="buy-btn" target="_blank">طلب عبر الواتساب</a>
+        </div>
+
+        <!-- منتج 2 -->
+        <div class="card">
+            <img src="https://via.placeholder.com/150" alt="كنزة طلعة">
+            <h4>كنزة طلعة شيك</h4>
+            <p class="price">95,000 ل.س</p>
+            <p class="colors">الألوان: أسود / بيج</p>
+            <a href="https://wa.me/963957494800?text=أريد%20طلب%20كنزة%20طلعة" class="buy-btn" target="_blank">طلب عبر الواتساب</a>
+        </div>
+
+    </div>
+
+    <!-- زر الواتساب الثابت -->
+    <a href="https://wa.me/963957494800" class="whatsapp-btn" target="_blank">💬</a>
+
+</body>
+</html>
